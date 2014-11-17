@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conexiones>
+	<conexion1>
+		<activa>true</activa>
+		<servidor>192.168.0.105</servidor>
+		<puerto>3050</puerto>
+		<base_de_datos>/home/user/databases/db1.gdb</base_de_datos>
+		<usuario>sysdba</usuario>
+		<password>masterkey</password>
+	</conexion1>
+	<conexion2>
+		<activa>true</activa>
+		<servidor>192.168.0.107</servidor>
+		<puerto>3050</puerto>
+		<base_de_datos>/home/user/databases/db1.gdb</base_de_datos>
+		<usuario>sysdba</usuario>
+		<password>masterkey</password>
+	</conexion2>
+	<conexion3>
+		<activa>true</activa>
+		<servidor>192.168.0.103</servidor>
+		<puerto>3050</puerto>
+		<base_de_datos>/home/user/databases/db1.gdb</base_de_datos>
+		<usuario>sysdba</usuario>
+		<password>masterkey</password>
+	</conexion3>
+</conexiones>
