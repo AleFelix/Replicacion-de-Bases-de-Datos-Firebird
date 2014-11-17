@@ -185,7 +185,6 @@ public class ProxfirMain {
 				Conexiones.add(nuevaC);
 			System.out.println("Conexion " + archiConf + " generada");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Error en conexion 1");
 			System.out.println(e.getErrorCode());
 			System.out.println(e.getSQLState());
@@ -193,14 +192,12 @@ public class ProxfirMain {
 			System.out.println(e.getMessage());
 			System.out.println(e.getCause());
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	private static void genReplicadores() {
-		// TODO Auto-generated method stub
 		for (ConexionBD c : Conexiones) {
 			replicadores.add(new Thread(new ReplicatorThread(c)));
 		}

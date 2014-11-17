@@ -13,17 +13,17 @@ import XML.ParseadorDeXML;
 import json.QueryManager;
 
 public class ConexionBD {
-	
+
 	private final int INDICE_COLUMNAS = 0;
 	private final int INDICE_VALORES = 1;
-	
+
 	private String cadenaConexion;
 	private String usuario = null;
 	private String clave = null;
 	private Connection db = null;
 	private Cola<String> ColaTransacciones = new Cola<String>();
 	private Thread tAnterior = null;
-	
+
 	private Statement query;
 	private boolean error = false;
 	private String msgError;
@@ -36,7 +36,8 @@ public class ConexionBD {
 	 * @throws URISyntaxException
 	 * @throws SQLException
 	 * @deprecated La clase ahora recibe directamente como parametros el
-	 *             servidor, el usuario y la password
+	 *             servidor, el puerto, la base de datos, el usuario y la
+	 *             password
 	 */
 	@SuppressWarnings("static-access")
 	public ConexionBD(String configuracion) throws URISyntaxException,
@@ -163,8 +164,8 @@ public class ConexionBD {
 		// Finalmente genero la conexion a la BD
 		db = DriverManager.getConnection(cadenaConexion, usuario, clave);
 		// e inserto los triggers si es que aun no fueron insertados
-		//InsertadorDeTriggers insertador = new InsertadorDeTriggers(db);
-		//insertador.insertarTriggers();
+		InsertadorDeTriggers insertador = new InsertadorDeTriggers(db);
+		insertador.insertarTriggers();
 	}
 
 	/**
@@ -190,12 +191,13 @@ public class ConexionBD {
 		if (error) {
 			respuesta = QueryManager.crearError(msgError);
 		} else {
-			respuesta = QueryManager.crearRespuesta(arreglos.get(INDICE_COLUMNAS),
-					arreglos.get(INDICE_VALORES));
+			respuesta = QueryManager
+					.crearRespuesta(arreglos.get(INDICE_COLUMNAS),
+							arreglos.get(INDICE_VALORES));
 		}
 		return respuesta;
 	}
-	
+
 	public ResultSet enviarConsulta(String consulta) {
 		ResultSet resultado = null;
 		try {
@@ -211,7 +213,7 @@ public class ConexionBD {
 		}
 		return resultado;
 	}
-	
+
 	public ArrayList<ArrayList<String>> respuestaDeQueryAListas(ResultSet rs) {
 		ArrayList<ArrayList<String>> arreglos = null;
 		ArrayList<String> arregloColumnas = null;
